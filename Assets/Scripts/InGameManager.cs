@@ -5,8 +5,9 @@ using TMPro;
 using UnityEngine.UI;
 using Photon.Pun;
 using Photon.Realtime;
+using UnityEngine.EventSystems;
 
-public class InGameManager : MonoBehaviour
+public class InGameManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public PhotonView inGamePV;
 
@@ -120,5 +121,14 @@ public class InGameManager : MonoBehaviour
         else PlayerObj.tag = "BlueTeam";
 
         print("»ý¼º");
+    }
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        transform.localScale *= 1.1f;
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        transform.localScale /= 1.1f;
     }
 }
