@@ -1949,10 +1949,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d925b61f7cd61d340a45795af867f2cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HpBar: {fileID: 0}
+  HpBar: {fileID: 2411023547993254371}
   PV: {fileID: 1867418590439479415}
   moveSp: 5
-  curHP: 0
+  curHP: 10
 --- !u!114 &1867418590439479415
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1972,6 +1972,7 @@ MonoBehaviour:
   OwnershipTransfer: 0
   observableSearch: 2
   ObservedComponents:
+  - {fileID: -3508702978256417484}
   - {fileID: 570777004113728911}
   - {fileID: -7507894465750611792}
   sceneViewId: 0

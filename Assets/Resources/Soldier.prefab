@@ -2299,7 +2299,7 @@ MonoBehaviour:
   HpBar: {fileID: 0}
   PV: {fileID: -4832333187033971829, guid: a2836f0676e46dc4685632e429aadbc8, type: 3}
   moveSp: 5
-  curHP: 0
+  curHP: 10
 --- !u!114 &8601804462692493697
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -6,7 +6,7 @@ using Photon.Realtime;
 
 public class HS_ProjectileMover : MonoBehaviour
 {
-    PhotonView PV;
+    public PhotonView PV;
 
     public float speed = 15f;
     public float hitOffset = 0f;
@@ -23,7 +23,7 @@ public class HS_ProjectileMover : MonoBehaviour
         if (flash != null)
         {
             //Instantiate flash effect on projectile position
-            var flashInstance = Instantiate(flash, transform.position, Quaternion.identity);
+            var flashInstance = PhotonNetwork.Instantiate("bullet1", transform.position, Quaternion.identity);
             flashInstance.transform.forward = gameObject.transform.forward;
             
             //Destroy flash effect depending on particle Duration time
@@ -49,8 +49,6 @@ public class HS_ProjectileMover : MonoBehaviour
             //transform.position += transform.forward * (speed * Time.deltaTime);         
         }
 	}
-
-    //https ://docs.unity3d.com/ScriptReference/Rigidbody.OnCollisionEnter.html
     void OnCollisionEnter(Collision collision)
     {
         //Lock all axes movement and rotation
@@ -93,12 +91,15 @@ public class HS_ProjectileMover : MonoBehaviour
         }
         //Destroy projectile on collision
         Destroy(gameObject);
-
+        if (!PV.IsMine && collision.gameObject.tag == "Player" && collision.gameObject.GetComponent<PhotonView>().IsMine)
+        {
+            //느린쪽에 맞춰서 hit판정
+        }
         if (collision.gameObject.tag == "RedTeam")
         {
             print("BULLET");
-            PV.RPC("DestroyRPC",RpcTarget.AllBuffered);
-            collision.gameObject.GetComponent<PlayerController>().curHP -= 1;
+            PV.RPC("DestroyRPC", RpcTarget.AllBuffered);
+            //collision.gameObject.GetComponent<PlayerController>().curHP -= 1;
         }
     }
     [PunRPC]

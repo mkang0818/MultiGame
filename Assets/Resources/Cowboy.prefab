@@ -2574,7 +2574,7 @@ MonoBehaviour:
   HpBar: {fileID: 0}
   PV: {fileID: 6797938004540063987}
   moveSp: 5
-  curHP: 0
+  curHP: 10
 --- !u!114 &6797938004540063987
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2594,6 +2594,7 @@ MonoBehaviour:
   OwnershipTransfer: 0
   observableSearch: 2
   ObservedComponents:
+  - {fileID: 8162015124596320861}
   - {fileID: -8720980520025959600}
   - {fileID: -6650917564470488180}
   sceneViewId: 0

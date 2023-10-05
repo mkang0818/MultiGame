@@ -6472,6 +6472,7 @@ GameObject:
   - component: {fileID: -4832333187033971829}
   - component: {fileID: -1446374024095605844}
   - component: {fileID: -1046422726279486689}
+  - component: {fileID: 4749390538140263369}
   m_Layer: 0
   m_Name: Alien
   m_TagString: Untagged
@@ -6575,10 +6576,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d925b61f7cd61d340a45795af867f2cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HpBar: {fileID: 0}
+  HpBar: {fileID: 562282546082397707}
   PV: {fileID: -4832333187033971829}
   moveSp: 5
-  curHP: 0
+  curHP: 10
 --- !u!114 &-4832333187033971829
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6598,8 +6599,10 @@ MonoBehaviour:
   OwnershipTransfer: 0
   observableSearch: 2
   ObservedComponents:
+  - {fileID: -7302814428470129327}
   - {fileID: -1446374024095605844}
   - {fileID: -1046422726279486689}
+  - {fileID: 4749390538140263369}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -6635,25 +6638,41 @@ MonoBehaviour:
   ShowParameterInspector: 1
   m_SynchronizeParameters:
   - Type: 4
-    SynchronizeType: 0
+    SynchronizeType: 1
     Name: jump
   - Type: 4
-    SynchronizeType: 0
+    SynchronizeType: 1
     Name: walk
   - Type: 9
-    SynchronizeType: 0
+    SynchronizeType: 1
     Name: fire
   - Type: 4
-    SynchronizeType: 0
+    SynchronizeType: 1
     Name: run
   - Type: 9
-    SynchronizeType: 0
+    SynchronizeType: 1
     Name: reload
   m_SynchronizeLayers:
   - SynchronizeType: 0
     LayerIndex: 0
   - SynchronizeType: 0
     LayerIndex: 1
+--- !u!114 &4749390538140263369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7369448170708576210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64179f3720bbfe947b7724caa67b7c1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizeVelocity: 1
+  m_SynchronizeAngularVelocity: 0
+  m_TeleportEnabled: 0
+  m_TeleportIfDistanceGreaterThan: 3
 --- !u!1 &7369448170710031444
 GameObject:
   m_ObjectHideFlags: 0

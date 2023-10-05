@@ -5529,7 +5529,7 @@ MonoBehaviour:
   HpBar: {fileID: 0}
   PV: {fileID: 2969101114883994591, guid: 55d87a7c8e027d24fb93e6d6cd2a1e93, type: 3}
   moveSp: 5
-  curHP: 0
+  curHP: 10
 --- !u!114 &-8816852695808120892
 MonoBehaviour:
   m_ObjectHideFlags: 0

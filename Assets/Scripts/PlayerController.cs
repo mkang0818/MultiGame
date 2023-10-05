@@ -5,9 +5,10 @@ using UnityEngine.UI;
 using Photon.Pun;
 using Photon.Realtime;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, IPunObservable
 {
     public Slider HpBar;
+    Vector3 curPos;
 
     public PhotonView PV;
     Rigidbody rb;
@@ -23,22 +24,26 @@ public class PlayerController : MonoBehaviour
     Vector3 moveVec;
 
     public int curHP;
-    int MaxHP;
+    int MaxHP = 10;
     private void Start()
     {
         Anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
-        //HpBar.value = curHP / MaxHP;
+        HpBar.value = curHP / MaxHP;
     }
     void Update()
     {
         if (PV.IsMine)
         {
             InputMove();
-            Jump();
+            PV.RPC("Jump", RpcTarget.AllBuffered);
+            //Jump();
             Shot();
             LookMouseCursor();
+            MinusHP();
         }
+        else if ((transform.position - curPos).sqrMagnitude >= 100) transform.position = curPos;
+        else transform.position = Vector3.Lerp(transform.position, curPos, Time.deltaTime * 10);
     }
     void InputMove()
     {
@@ -69,6 +74,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    [PunRPC]
     void Jump()
     {
         if (jDown && !isJump)
@@ -90,12 +96,33 @@ public class PlayerController : MonoBehaviour
             Anim.SetTrigger("reload");
         }
     }
+    void MinusHP()
+    {
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            curHP -= 1;
+        }
+        HpBar.value = Mathf.Lerp(HpBar.value,curHP/MaxHP,Time.deltaTime*10);
+    }
     private void OnCollisionEnter(Collision col)
     {
         if (col.gameObject.tag == "Floor")
         {
             isJump = false;
         }
+    }
 
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting)
+        {
+            stream.SendNext(transform.position);
+            stream.SendNext(HpBar.value);
+        }
+        else
+        {
+            curPos = (Vector3)stream.ReceiveNext();
+            HpBar.value = (float)stream.ReceiveNext();
+        }
     }
 }

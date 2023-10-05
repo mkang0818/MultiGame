@@ -2111,7 +2111,7 @@ MonoBehaviour:
   HpBar: {fileID: 0}
   PV: {fileID: -3279985942977926425}
   moveSp: 5
-  curHP: 0
+  curHP: 10
 --- !u!114 &-3279985942977926425
 MonoBehaviour:
   m_ObjectHideFlags: 0

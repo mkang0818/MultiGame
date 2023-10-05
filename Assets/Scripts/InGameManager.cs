@@ -10,8 +10,6 @@ public class InGameManager : MonoBehaviour
 {
     public PhotonView inGamePV;
 
-    public GameObject InGameObj;
-
     public GameObject CharSelectUI;
     public GameObject TabUI;
 
@@ -63,7 +61,6 @@ public class InGameManager : MonoBehaviour
                 isChat = false;
             }
         }
-        
     }
     #region 채팅
     public void Send()
@@ -113,11 +110,15 @@ public class InGameManager : MonoBehaviour
     public void CharClose()
     {
         charSelect = true;
-
-        InGameObj.SetActive(true);
         CharSelectUI.SetActive(false);
         PlayerObj = PhotonNetwork.Instantiate(CharPrefabs[charNum], CharSpawnPos[charNum].position, Quaternion.identity);
+
+        if (PhotonNetwork.CurrentRoom.PlayerCount % 2 == 0)
+        {
+            PlayerObj.tag = "RedTeam";
+        }
+        else PlayerObj.tag = "BlueTeam";
+
         print("생성");
     }
-
 }

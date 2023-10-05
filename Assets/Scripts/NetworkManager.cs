@@ -156,7 +156,11 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
 
     #region 号
-    public void CreateRoom() => PhotonNetwork.CreateRoom(RoomInput.text == "" ? "Room" + Random.Range(0, 100) : RoomInput.text, new RoomOptions { MaxPlayers = 2 });
+    public void CreateRoom()
+    {
+        print("号持失");
+        PhotonNetwork.CreateRoom(RoomInput.text == "" ? "Room" + Random.Range(0, 100) : RoomInput.text, new RoomOptions { MaxPlayers = 2 });
+    }
     public void JoinRandomRoom() => PhotonNetwork.JoinRandomRoom();
 
     public void LeaveRoom() => PhotonNetwork.LeaveRoom();
